@@ -1,0 +1,36 @@
+openapi: 3.0.2
+info:
+    title: DEMO OIDC API
+    version: 1.0.0
+servers:
+    -
+        url: 'http://kafka-sb-sb.apps.ocp.myocp.net/camel-rest'
+paths:
+    /:
+        get:
+            responses:
+                '200':
+                    description: valid
+            operationId: route1
+            x-camelContextId: Rest2Kafka
+            x-routeId: route1
+    /v1:
+        put:
+            responses:
+                '200':
+                    description: valid
+            operationId: route2
+            x-camelContextId: Rest2Kafka
+            x-routeId: route2
+components:
+    securitySchemes:
+        rhsso:
+            flows:
+                implicit:
+                    authorizationUrl: 'https://keycloak-sso.apps.ocp.myocp.net/auth/realms/3scale'
+                    scopes:
+                        scope-1: ''
+            type: oauth2
+security:
+    -
+        rhsso: []
